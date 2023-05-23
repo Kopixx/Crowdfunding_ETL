@@ -1,3 +1,12 @@
+DROP DATABASE IF EXISTS crowdfunding_db;
+
+CREATE DATABASE crowdfunding_db;
+
+DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS subcategory;
+DROP TABLE IF EXISTS campaign;
+
 CREATE TABLE contacts (
 	contact_id INT PRIMARY KEY,
 	first_name VARCHAR(255) NOT NULL,
@@ -34,6 +43,26 @@ CREATE TABLE campaign (
 	FOREIGN KEY (category_id) REFERENCES category(category_id),
 	FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id)
 );
+
+COPY contacts
+FROM 'C:\Users\kalio\Documents\PythonProjects\DataBootcamp\ETL\Project_2\Crowdfunding_ETL\Resources\contacts.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY category
+FROM 'C:\Users\kalio\Documents\PythonProjects\DataBootcamp\ETL\Project_2\Crowdfunding_ETL\Resources\category.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY subcategory
+FROM 'C:\Users\kalio\Documents\PythonProjects\DataBootcamp\ETL\Project_2\Crowdfunding_ETL\Resources\subcategory.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY campaign
+FROM 'C:\Users\kalio\Documents\PythonProjects\DataBootcamp\ETL\Project_2\Crowdfunding_ETL\Resources\campaign.csv'
+DELIMITER ','
+CSV HEADER;
 
 select * from contacts;
 
